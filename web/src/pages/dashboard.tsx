@@ -1,5 +1,12 @@
 import { TopNav } from "../components/top-nav";
-import { LineChart, Line, CartesianGrid, XAxis, YAxis } from "recharts";
+import {
+  LineChart,
+  Line,
+  CartesianGrid,
+  XAxis,
+  YAxis,
+  Tooltip,
+} from "recharts";
 
 export function DashboardPage() {
   const data = [
@@ -20,6 +27,7 @@ export function DashboardPage() {
           <CartesianGrid stroke="#ccc" />
           <XAxis dataKey="name" />
           <YAxis />
+          <Tooltip />
         </LineChart>
       </div>
     </div>
