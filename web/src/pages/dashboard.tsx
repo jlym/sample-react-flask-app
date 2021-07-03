@@ -4,7 +4,7 @@ export function DashboardPage() {
   return (
     <div>
       <TopNav />
-      Dashboard
+      <div className="container mt-3">Dashboard</div>
     </div>
   );
 }
