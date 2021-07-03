@@ -1,3 +1,10 @@
+import { TopNav } from "../components/top-nav";
+
 export function HomePage() {
-  return <div>Home</div>;
+  return (
+    <div>
+      <TopNav />
+      Home
+    </div>
+  );
 }
