@@ -15,7 +15,7 @@ export interface TemperatureDataItem {
 
 const endpoint =
   process.env.NODE_ENV === "production"
-    ? "/api/temperatures"
+    ? "http://sample.jimamon.com:8000/api/temperatures"
     : "http://127.0.0.1:5000/api/temperatures";
 
 export function useTemperature() {
