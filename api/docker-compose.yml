@@ -1,0 +1,10 @@
+# This allows us to easily spin up a Postgres server locally
+# to aid development.
+
+services:
+  db:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: bananananana
