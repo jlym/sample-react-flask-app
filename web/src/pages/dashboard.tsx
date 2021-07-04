@@ -1,34 +1,42 @@
 import { TopNav } from "../components/top-nav";
-import {
-  LineChart,
-  Line,
-  CartesianGrid,
-  XAxis,
-  YAxis,
-  Tooltip,
-} from "recharts";
+import { TemperatureChart } from "../components/temperature-chart";
+import { useTemperature } from "../hooks/use-temperatures";
 
 export function DashboardPage() {
-  const data = [
-    { name: "Page A", uv: 400, pv: 2400, amt: 2400 },
-    { name: "Page B", uv: 500, pv: 2400, amt: 2400 },
-    { name: "Page C", uv: 300, pv: 2400, amt: 2400 },
-    { name: "Page D", uv: 400, pv: 2400, amt: 2400 },
-  ];
+  // Fetch temperatures from the API.
+  const tempResponse = useTemperature();
+
+  // Prep a div that contains whether we're still waiting for a response, or the request failed.
+  let requestStatus;
+  if (tempResponse.loading) {
+    requestStatus = <div>loading</div>;
+  } else if (tempResponse.error) {
+    requestStatus = <div>{tempResponse.error}</div>;
+  }
+
+  // Create the charts from the response data.
+  let charts = [];
+  if (tempResponse.data) {
+    for (let location in tempResponse.data) {
+      const tempData = tempResponse.data[location];
+      const chart = (
+        <TemperatureChart
+          location={location}
+          temperatureData={tempData}
+          key={location}
+        />
+      );
+      charts.push(chart);
+    }
+  }
 
   return (
     <div>
       <TopNav />
       <div className="container-sm mt-5">
         <h1 className="mb-5">Dashboard</h1>
-
-        <LineChart width={600} height={300} data={data}>
-          <Line type="monotone" dataKey="uv" stroke="#8884d8" />
-          <CartesianGrid stroke="#ccc" />
-          <XAxis dataKey="name" />
-          <YAxis />
-          <Tooltip />
-        </LineChart>
+        {requestStatus}
+        {charts}
       </div>
     </div>
   );
