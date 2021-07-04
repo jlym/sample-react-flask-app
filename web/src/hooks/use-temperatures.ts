@@ -13,7 +13,11 @@ export interface TemperatureDataItem {
   timestamp: number;
 }
 
-const endpoint = "http://127.0.0.1:5000/api/temperatures";
+const endpoint =
+  process.env.NODE_ENV === "production"
+    ? "/api/temperatures"
+    : "http://127.0.0.1:5000/api/temperatures";
+
 export function useTemperature() {
   const [response, setResponse] = useState<TemperatureResponse>({
     loading: true,
