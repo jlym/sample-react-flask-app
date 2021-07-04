@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, send_from_directory
 import psycopg2
 import os
 from flask_cors import CORS
@@ -103,3 +103,13 @@ def init_temperatures():
             cursor.execute(query);
 
     return ("", 204)
+
+
+@app.route("/app/")
+@app.route("/app/dashboard")
+def serve_index():
+    return app.send_static_file("index.html")
+    
+@app.route("/app/<path:name>")
+def serve_static(name):
+    return send_from_directory("static", name)

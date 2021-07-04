@@ -13,7 +13,7 @@ ReactDOM.render(
       // Use React-Router to map routes to page components.
       // https://reactrouter.com/web/guides/quick-start
     }
-    <BrowserRouter>
+    <BrowserRouter basename="/app">
       <Switch>
         <Route path="/dashboard">
           <DashboardPage />

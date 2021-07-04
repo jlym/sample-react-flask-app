@@ -49,5 +49,6 @@
   },
   "devDependencies": {
     "prettier": "2.3.2"
-  }
+  },
+  "homepage": "http://http://127.0.0.1:5000/app"
 }
