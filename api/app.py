@@ -1,8 +1,10 @@
 from flask import Flask
 import psycopg2
 import os
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 # Load config from environment variables. Default to development values.
 db_host = os.environ.get("DB_HOST", default="localhost")
